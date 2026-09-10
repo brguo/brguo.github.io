@@ -1,0 +1,69 @@
+{
+  "log": {
+    "loglevel": "warning"
+  },
+
+  "inbounds": [
+    {
+      "listen": "0.0.0.0",
+      "port": 11086,
+      "protocol": "vless",
+      "settings": {
+        "clients": [
+          {
+            "id": "1fc325ab-68b3-4aa8-9cf7-3671f91ef180",
+            "flow": "xtls-rprx-vision"
+          }
+        ],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "show": false,
+          "dest": "itunes.apple.com:443",
+          "xver": 0,
+          "serverNames": [
+            "itunes.apple.com"
+          ],
+          "privateKey": "CJyU87cXES-5yCYv4U4Ji2oTWHI9BUH8UxNFvdQ-0nw",
+          "shortIds": [
+            "0123456789abcdef"
+          ]
+        }
+      }
+    }
+  ],
+
+  "outbounds": [
+    {
+      "tag": "socks-out",
+      "protocol": "socks",
+      "settings": {
+        "servers": [
+          {
+            "address": "127.0.0.1",
+            "port": 7928
+          }
+        ]
+      }
+    },
+    {
+      "tag": "block",
+      "protocol": "blackhole",
+      "settings": {}
+    }
+  ],
+
+  "routing": {
+    "domainStrategy": "IPIfNonMatch",
+    "rules": [
+      {
+        "type": "field",
+        "network": "tcp,udp",
+        "outboundTag": "socks-out"
+      }
+    ]
+  }
+}
