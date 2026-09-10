@@ -7,7 +7,7 @@
 
   "inbounds": [
     {
-      "listen": "127.0.0.1",
+      "listen": "45.202.199.150",
       "port": 11086,
       "protocol": "vless",
       "settings": {
